@@ -23,9 +23,7 @@ int main()
     each contain 10 vectors, with each of these 10 vectors storing the numbers in one of the 10 files to be sorted.*/
     std::vector<std::vector<int>> numberContainer1, numberContainer2;
 
-    // CHANGE BACK TO CORRECT FILE PATH FOR ACTUAL TIMING
     std::cout << "Loading the 10 text files into memory\n\n";
-    // Initialise numberContainer1 and numberContainer2 by calling the createNumListContainer function
     numberContainer1 = createNumListContainer(10, "Randomfiles/Random");
     numberContainer2 = createNumListContainer(10, "Randomfiles/Random");
 
@@ -59,9 +57,6 @@ std::vector<int> readNumFile(std::string fileName)
     {
         numbers.push_back(extractedNum); // Push extractedNum to the numbers vector
     }
-    /*credit for the above while loop condition:
-    https://stackoverflow.com/questions/7868936/read-file-line-by-line-using-ifstream-in-c
-    */
 
     // Close the file once finished with it, per best practice
     inFile.close();
@@ -99,7 +94,6 @@ std::map<int, double> calcSortTime(std::vector<std::vector<int>> &numListContain
     // Iterate through the 10 vectors contained within numListContainer
     for (int i = 0; i < static_cast<int>(numListContainer.size()); i++)
     {
-        // If isStlSort is true, the function will execute the below if branch and thus call the STL sort function.
         if (isStlSort)
         {
             /*These timing-related statements need to be in each branch of the if-else block to avoid the timing including the execution of the if-else statement.
@@ -108,10 +102,8 @@ std::map<int, double> calcSortTime(std::vector<std::vector<int>> &numListContain
             auto startTime = std::chrono::high_resolution_clock::now();
             std::sort(numListContainer[i].begin(), numListContainer[i].end());
             // stop count time
-
             auto endTime = std::chrono::high_resolution_clock::now();
             // the time in ms as a double
-
             std::chrono::duration<double, std::micro> time_us = endTime - startTime;
             // cast the time from double to int
             auto intTimeMicroSec = std::chrono::duration_cast<std::chrono::microseconds>(time_us);
@@ -149,7 +141,7 @@ std::map<int, double> calcSortTime(std::vector<std::vector<int>> &numListContain
 
 void selectionSort(std::vector<int> &a)
 {
-    // An implementation of selection sort, which was adapted from an example provided in the course lab files
+    // An implementation of selection sort
     for (int i = 0; i < static_cast<int>(a.size() - 1); i++)
     {
         int minIndex = i;
@@ -171,6 +163,7 @@ void printSortTimes(const std::map<int, double> &timesMap, std::string sortType)
 
     /*Initialise a variable of type int to track the total time elapsed during the sorting of all
     10 files with a given sorting algorithm. */
+    
     double totalTime = 0; // Use double to prevent overflow error
     std::string pathNameStem = "Randomfiles/Random";
     std::string fileType = ".txt";
