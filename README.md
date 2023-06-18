@@ -1,4 +1,4 @@
-# Search Algorithm Timer
+# Sorting Algorithm Timer
 
 In this project, I created a C++ program that reads 10 files that each contain 25000 integers, adds the numbers in each file to a corresponding vector container and then sorts each vector with the built-in Standard Template Library (STL) Sort function and a programmer-defined implementation of selection sort. The run-time for each algorithm is recorded using the std::chrono library and the user is provided with the average run times in the terminal's output.
 
